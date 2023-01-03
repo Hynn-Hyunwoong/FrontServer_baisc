@@ -25,8 +25,19 @@ ajax_get.addEventListener("click", () => {
         }
     }
 
-    request({method : "get", path: "/users/1"}, view)
+    request({method : "get", path: "/users/1"}, (xhr) => {
+        console.log("xhr",xhr.response)
+        console.log("res",response)
+    })
 
+})
+
+ajax_post.addEventListener("click", () => {
+    request ({method : "post", path: "/users"},(response) => {
+        console.log("xhr",xhr.response)
+        console.log("res", response)
+        
+    })
 })
     // xhr.open("get", "http://localhost:3000/users/5")
     // xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded")
@@ -42,24 +53,24 @@ ajax_get.addEventListener("click", () => {
     // }
 // })
 
-ajax_post.addEventListener("click", () => {
-    xhr.open("post", "http://localhost:3000/users")
-    xhr.setRequestHeader("Content-Type", "application/json")
-    const data = {
-        userid :'choihwoong',
-        userpw :'1234',
-        username : 'hynn',
-        gender : "남자"
-    }
-    xhr.send(JSON.stringify(data))
+// ajax_post.addEventListener("click", () => {
+//     xhr.open("post", "http://localhost:3000/users")
+//     xhr.setRequestHeader("Content-Type", "application/json")
+//     const data = {
+//         userid :'choihwoong',
+//         userpw :'1234',
+//         username : 'hynn',
+//         gender : "남자"
+//     }
+//     xhr.send(JSON.stringify(data))
 
-    console.log("open :", xhr.open)
-    console.log("set :", xhr.setRequestHeader)
-    console.log("send :", xhr.send)
+//     console.log("open :", xhr.open)
+//     console.log("set :", xhr.setRequestHeader)
+//     console.log("send :", xhr.send)
 
-    xhr.onload = () => {
-        if (xhr.readyState === 4 && xhr.status === 200){
-            console.log(xhr.response)
-        }
-    }
-})
+//     xhr.onload = () => {
+//         if (xhr.readyState === 4 && xhr.status === 200){
+//             console.log(xhr.response)
+//         }
+//     }
+// })
