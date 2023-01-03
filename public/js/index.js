@@ -77,13 +77,19 @@ ajax_post.addEventListener("click", () => {
 
 const userList = document.querySelector('#userlist')
 const btn = document.querySelector('#userbtn')
-const card = () => {
+const card = ({idx, userid, userpw, username, gender }) => {
     const ulElement = document.createElement('ul')
     const idxElement = document.createElement('li')
     const idElement = document.createElement('li')
     const pwElement = document.createElement('li')
     const nameElement = document.createElement('li')
     const genderElement = document.createElement('li')
+
+    idxElement.innerHTML = idx
+    idElement.innerHTML = userid
+    pwElement.innerHTML = userpw
+    nameElement.innerHTML = username
+    genderElement.innerHTML = gender
 
     ulElement.append(idxElement)
     ulElement.append(idElement)
@@ -94,5 +100,9 @@ const card = () => {
 }
 
 btn.addEventListener('click', () => {
-    card()
+    request ({method : "post", path: "/users", body : {userid : 'choihwoong', userpw :"1234", username:"Hynn", gender : "남자"}},(response) => {
+        console.log("xhr : ",xhr.response)
+        console.log("res : ", response)  
+    })
+    card({idx:2 , userid : "seoyeong", userpw : "1234", username:"seoyeong", gender : "여자"})
 })
