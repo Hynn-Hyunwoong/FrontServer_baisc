@@ -99,10 +99,30 @@ const card = ({idx, userid, userpw, username, gender }) => {
     userList.append(ulElement)
 }
 
-btn.addEventListener('click', () => {
-    request ({method : "post", path: "/users", body : {userid : 'choihwoong', userpw :"1234", username:"Hynn", gender : "남자"}},(response) => {
-        console.log("xhr : ",xhr.response)
-        console.log("res : ", response)  
+request ({ method : 'get', path : '/user'}, (response) => {
+    const arr = JSON.parse(response)
+    console.log(arr)
+    arr.forEach((v) =>{
+        card(v)
     })
-    card({idx:2 , userid : "seoyeong", userpw : "1234", username:"seoyeong", gender : "여자"})
+})
+
+btn.addEventListener('click', () => {
+    request (
+        {
+            method : "post", 
+            path: "/users", 
+            body : {
+                userid : 'choihwoong', 
+                userpw :"1234", 
+                username:"Hynn", 
+                gender : "남자",
+            },
+        },
+        (response) => {
+        console.log("xhr : ",xhr.response)
+        console.log("res : ", response)
+        card(JSON.parse(response))
+    })
+    // card({idx:2 , userid : "seoyeong", userpw : "1234", username:"seoyeong", gender : "여자"})
 })
