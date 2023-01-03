@@ -25,7 +25,7 @@ ajax_get.addEventListener("click", () => {
         }
     }
 
-    request({method : "get", path: "/users/1"}, (xhr) => {
+    request({method : "get", path: "/users/1"}, (response) => {
         console.log("xhr",xhr.response)
         console.log("res",response)
     })
@@ -74,3 +74,25 @@ ajax_post.addEventListener("click", () => {
 //         }
 //     }
 // })
+
+const userList = document.querySelector('#userlist')
+const btn = document.querySelector('#userbtn')
+const card = () => {
+    const ulElement = document.createElement('ul')
+    const idxElement = document.createElement('li')
+    const idElement = document.createElement('li')
+    const pwElement = document.createElement('li')
+    const nameElement = document.createElement('li')
+    const genderElement = document.createElement('li')
+
+    ulElement.append(idxElement)
+    ulElement.append(idElement)
+    ulElement.append(pwElement)
+    ulElement.append(nameElement)
+    ulElement.append(genderElement)
+    userList.append(ulElement)
+}
+
+btn.addEventListener('click', () => {
+    card()
+})
